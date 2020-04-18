@@ -17,9 +17,9 @@ while True:
         try:
             wordlen(attempts)
         except ValueError:
-            print("sorry "+worldlen+" is an invalid input, please input integer between 1 and 20")
+            print("sorry "+wordlen+" is an invalid input, please input integer between 1 and 20")
         if wordlen(attempts) > 10 or wordlen(attempts) < 4:
-            print("sorry "+worldlen+" is an invalid input, please input integer between 1 and 20")
+            print("sorry "+wordlen+" is an invalid input, please input integer between 1 and 20")
         else:
             wordlen = int(wordlen)
             break
