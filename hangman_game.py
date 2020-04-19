@@ -33,7 +33,7 @@ while True:
     wrongs = [] #this is for tracking all the wrong guesses
 
     word = get_word(wordlen) #!!NEED TO ADD THIS!!
-    
+
     #actual procedure of guessing starts here
     while attempts > 0:
         print("word: "+cover)
@@ -64,5 +64,3 @@ while True:
     break
 print("press enter to exit")
 input() #hold the program open
-
-        
