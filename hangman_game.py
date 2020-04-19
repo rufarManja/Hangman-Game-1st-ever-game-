@@ -15,7 +15,7 @@ while True:
     while True: #asking for the length of the word
         wordlen = input("how many characters long do you want the word to be?: ")
         try:
-            wordlen(attempts)
+            int(wordlen)
         except ValueError:
             print("sorry "+wordlen+" is an invalid input, please input integer between 1 and 20")
         if wordlen(attempts) > 10 or wordlen(attempts) < 4:
