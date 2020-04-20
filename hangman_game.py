@@ -1,3 +1,25 @@
+#imports
+import random
+#functions
+fakeW = ['what','cost','white','burnt','bruise',"hollow",'severed','survive','extremes','impromptu']
+def get_word(wordlength:int):
+    processed = 0 #amount words processed through
+    current = str #current word being manipulated,will eventually be the one to be outputted by function
+    #W = open('wordlist.txt',r) UNCOMMENT AFTER testing
+    for word in fakeW: #W: testing remove fakeW and fix this
+        if '(' in word or ')' in word:
+            continue
+        word = word.strip().lower() #makes sure the word is lower case and only contains characters and no spaces
+        if len(word) < wordlength:#so wont spend time on words that are shorter than specfied
+            continue
+        processed += 1 #at this point the word has made it through conditions and now is going to try get picked
+        if random.randint(1,processed) == 1: # as it goes on, becomes harder
+            current = word
+    return current
+
+
+
+
 # actual procedure
 while True:
     print("Lets play!")
@@ -13,7 +35,7 @@ while True:
             print("\n sorry "+attempts+" is an invalid input, please input integer between 1 and 20 \n")
 
     while True: #askin for the length of the word
-        wordlen = input("how many characters long do you want the word to be?[4-10]: ")
+        wordlen = input("what is the minimum amount of characters you want the word to be?[4-10]: ")
         try:
             if int(wordlen) <= 10 and int(wordlen) >= 4:
                 wordlen = int(wordlen)
@@ -22,32 +44,39 @@ while True:
             print("\n sorry "+wordlen+" is an invalid input, please input integer between 4 and 10 \n")
         else:
             print("\n sorry "+str(wordlen)+" is an invalid input, please input integer between 4 and 10 \n") #str() in this one cos apprently it became an int before here
+    word = get_word(wordlen)
     x = 0 #for setting up cover
     cover = [] #will slowly be revealed 
-    while x < wordlen: #sets up cover
+    while x < len(word): #sets up cover
         cover.append('*')
         x +=1
-    print('cover',cover)
-    cover = ''.join(cover)
     del x #dont need it afterwards
     wrongs = [] #this is for tracking all the wrong guesses
 
-    word = get_word(wordlen) #!!NEED TO ADD THIS!!
+    #!!NEED TO ADD THIS!!
 
     #actual procedure of guessing starts here
     while attempts > 0:
-        print("word: "+cover)
-        print("Previous guesses: "+wrongs)
+        print("word: "+ ''.join(cover)) #keeps cover as a list for later
+        print("Previous guesses: "+str(wrongs))
         while True: #verifying the guess
-            nxt = input(" \n input next guess")
-            if wrongs.index(nxt) == True:
-                print("already guessed this, try again")
-            else:
+            nxt = input(" \n input next guess: ")
+            try:
+                if wrongs.index(nxt) == True:
+                    print("already guessed this, try again")
+                else:
+                    break
+            except ValueError: #means value isn't in list
                 break
+
+            else:
+                print("already guessed this, try again")
+
         if nxt in word:
             print("Good Guess!!")
-            for i in word:
-                word[i] = cover[i]
+            for i in range(len(word)):
+                if word[i] == nxt:
+                    cover[i] = nxt #this is where it is important cover is still a list, str doesnt support index assigning
         else:
             print("incorrect guess")
             attempts -= 1
