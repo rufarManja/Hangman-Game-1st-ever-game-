@@ -62,15 +62,12 @@ while True:
         while True: #verifying the guess
             nxt = input(" \n input next guess: ")
             try:
-                if wrongs.index(nxt) == True:
+                if nxt in wrongs:
                     print("already guessed this, try again")
                 else:
                     break
             except ValueError: #means value isn't in list
                 break
-
-            else:
-                print("already guessed this, try again")
 
         if nxt in word:
             print("Good Guess!!")
