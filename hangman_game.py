@@ -4,7 +4,7 @@ import random
 def get_word(wordlength:int):
     processed = 0 #amount words processed through
     current = str #current word being manipulated,will eventually be the one to be outputted by function
-    W = open('Wordlist.txt',"r") 
+    W = open("Wordlist.txt","r") 
     for word in W:
         if '(' in word or ')' in word:
             continue
